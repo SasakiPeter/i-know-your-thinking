@@ -1,0 +1,15 @@
+@import '~antd/dist/antd.css';
+
+
+.APP{
+    display: flex;
+    section{
+        width:70%;
+        button{
+            width:100%;
+        }
+    }
+    aside{
+        width:30%;
+    }
+}
