@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Post from '../components/Post';
-import { postNumber } from '../actions';
+import { postGuess } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -10,8 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onPostNumber: (number) => {
-      dispatch(postNumber(number))
+    onPostGuess: (history, stepNumber) => {
+      dispatch(postGuess(history, stepNumber))
     }
   }
 };

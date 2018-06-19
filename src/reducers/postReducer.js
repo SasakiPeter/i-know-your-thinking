@@ -1,7 +1,16 @@
-const postReducer = (state = [], action) => {
+const initialState = {
+  history: [],
+  stepNumber: 0
+};
+
+const postReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "POST_NUMBER":
-      return [...state, action.number]
+    case "POST_GUESS":
+      return {
+        ...state,
+        history: action.history,
+        stepNumber: action.stepNumber
+      }
     default:
       return state
   }

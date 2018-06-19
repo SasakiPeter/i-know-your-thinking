@@ -5,6 +5,7 @@
     display: flex;
     section{
         width:70%;
+        display: flex;
         button{
             width:100%;
         }
@@ -12,4 +13,8 @@
     aside{
         width:30%;
     }
+}
+.counter{
+    width:100/3+%;
+    font-size:20em;
 }

@@ -2,9 +2,10 @@ import { connect } from 'react-redux';
 import History from '../components/History';
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  console.log(state.postReducer.history);
   return {
-    number: state.postReducer
+    history: state.postReducer.history,
+    stepNumber: state.postReducer.stepNumber
   }
 };
 
