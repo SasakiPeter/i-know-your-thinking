@@ -1,7 +1,6 @@
 import React from 'react';
-import { Input, Button, message } from 'antd';
+import { Button, message } from 'antd';
 import Counter from './Counter';
-// const { TextArea } = Input;
 
 class Post extends React.Component {
   state = {
@@ -20,7 +19,6 @@ class Post extends React.Component {
       this.setState({
         counts: counts
       });
-      // console.log(this.state);
     }
   };
 
@@ -33,7 +31,6 @@ class Post extends React.Component {
       this.setState({
         counts: counts
       });
-      // console.log(this.state);
     }
   };
 
@@ -46,44 +43,47 @@ class Post extends React.Component {
     // console.log(history)
     // console.log(current);
     // console.log(number);
-    const history = this.state.history.concat([
-      {
-        counts: this.state.counts,
-        id: this.state.stepNumber
-      }
-    ]);
-    this.props.onPostGuess(history, history.length);
-    this.setState({
-      history: history,
-      stepNumber: history.length,
+
+    const { history, counts, stepNumber } = this.state
+    const [a, b, c] = counts;
+    const same = []
+    for (let i = 0; i < history.length; i++) {
+      same.push(history[i].counts === counts)
+    }
+    const again = same.some(function (bool) {
+      return bool === true;
     });
-    console.log(this.state);
+    if (a === b || a === c || b === c) {
+      message.error("すべて異なる数字にしてください")
+    } else if (again) {
+      message.error("同じ回答はできません")
+    } else {
+      const newHistory = history.concat([
+        {
+          counts: counts,
+          id: stepNumber
+        }
+      ]);
+      this.props.onPostGuess(newHistory, newHistory.length);
+      this.setState({
+        history: newHistory,
+        stepNumber: newHistory.length,
+      });
+      console.log(this.state);
+    }
   };
 
-  // renderCounter = () => {
-  //   let counters = []
-  //   for (let i = 0; i < this.state.level; i++) {
-  //     counters.push(
-  //       <Counter
-  //         key={i}
-  //         count={this.state.counts[i]}
-  //         onIncrement={() => this.onIncrement(i)}
-  //         onDecrement={() => this.onDecrement(i)}
-  //       />
-  //     )
-  //   }
-  //   return (
-  //     { counters }
-  //   )
-  // }
-
   renderCounter = (i) => {
+    let style = {
+      width: 'calc(100 % /i);'
+    };
     return (
       <Counter
         key={i}
         count={this.state.counts[i]}
         onIncrement={() => this.onIncrement(i)}
         onDecrement={() => this.onDecrement(i)}
+        style={style}
       />
     );
   };
