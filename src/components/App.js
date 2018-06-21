@@ -25,7 +25,7 @@ const App = () => {
       <nav>
         <h1>navigation bar</h1>
       </nav>
-      <div class="APP">
+      <div className="APP">
         <CPost />
         <CHistory />
       </div>

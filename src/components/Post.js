@@ -1,73 +1,108 @@
 import React from 'react';
 import { Input, Button, message } from 'antd';
 import Counter from './Counter';
-const { TextArea } = Input;
+// const { TextArea } = Input;
 
 class Post extends React.Component {
   state = {
-    // input: 0,
-    history: [{
-      number: Array(3).fill(null)
-    }],
+    counts: Array(3).fill(0),
+    history: [],
     stepNumber: 0,
-    num1: 0,
-    num2: 0,
-    num3: 0
+    level: 3
   };
 
+  onIncrement = (i) => {
+    if (this.state.counts[i] === 9) {
+      return
+    } else {
+      const counts = this.state.counts.slice()
+      const arr = counts.splice(i, 1, counts[i] + 1)
+      this.setState({
+        counts: counts
+      });
+      // console.log(this.state);
+    }
+  };
 
+  onDecrement = (i) => {
+    if (this.state.counts[i] === 0) {
+      return
+    } else {
+      const counts = this.state.counts.slice()
+      const arr = counts.splice(i, 1, counts[i] - 1)
+      this.setState({
+        counts: counts
+      });
+      // console.log(this.state);
+    }
+  };
 
-  // handleChange = event => {
-  //   this.setState(
-  //     { [event.target.name]: event.target.value }
-  //   );
-  //   console.log(this.state);
-  // };
+  handleSubmit = () => {
+    // const { counts} = this.state;
 
-  // handleSubmit = () => {
-  //   // const { number } = this.state;
-  //   const { input } = this.state;
+    // const history = this.state.history.slice(0, this.state.stepNumber + 1)
+    // const current = history[history.length - 1];
+    // const number = current.number.slice();
+    // console.log(history)
+    // console.log(current);
+    // console.log(number);
+    const history = this.state.history.concat([
+      {
+        counts: this.state.counts,
+        id: this.state.stepNumber
+      }
+    ]);
+    this.props.onPostGuess(history, history.length);
+    this.setState({
+      history: history,
+      stepNumber: history.length,
+    });
+    console.log(this.state);
+  };
 
-  //   const history = this.state.history.slice(0, this.state.stepNumber + 1)
-  //   const current = history[history.length - 1];
-  //   const number = current.number.slice();
-  //   console.log(history)
-  //   console.log(current);
-  //   console.log(number);
+  // renderCounter = () => {
+  //   let counters = []
+  //   for (let i = 0; i < this.state.level; i++) {
+  //     counters.push(
+  //       <Counter
+  //         key={i}
+  //         count={this.state.counts[i]}
+  //         onIncrement={() => this.onIncrement(i)}
+  //         onDecrement={() => this.onDecrement(i)}
+  //       />
+  //     )
+  //   }
+  //   return (
+  //     { counters }
+  //   )
+  // }
 
-
-  //   if (input == 0) {
-  //     message.error('3桁の数字を入れてください')
-  //   } else {
-  //     this.setState({
-  //       history: history.concat([{
-  //         number: number,
-  //       }]),
-  //       stepNumber: history.length,
-  //     })
-  //     this.props.onPostGuess(this.state.history, this.state.stepNumber)
-  //   };
-
-
-  // };
-
+  renderCounter = (i) => {
+    return (
+      <Counter
+        key={i}
+        count={this.state.counts[i]}
+        onIncrement={() => this.onIncrement(i)}
+        onDecrement={() => this.onDecrement(i)}
+      />
+    );
+  };
 
   render() {
-    const { num1, num2, num3 } = this.state;
+    const { stepNumber, level } = this.state;
+    const counters = [];
+    for (let i = 0; i < level; i++) {
+      counters.push(
+        this.renderCounter(i)
+      )
+    };
     return (
       <section>
         <h1>rule</h1>
-        {/* <TextArea
-          name="input"
-          value={input}
-          placeholder="3桁の数字"
-          onChange={this.handleChange}
-        /> */}
-
-        {/* <div>{num1}</div> */}
-        <Counter />
-        <Counter />
-        <Counter />
+        <p>あなたは{stepNumber}回挑戦しました。</p>
+        <div>
+          {counters}
+        </div>
         <Button
           type="primary"
           onClick={this.handleSubmit}

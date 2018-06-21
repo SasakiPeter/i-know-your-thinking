@@ -3,7 +3,7 @@ import { Table } from 'antd';
 
 const columns = [{
   title: "your_guess",
-  dataIndex: "your_guess",
+  dataIndex: "counts",
   key: "your_guess"
 }, {
   title: "response",
@@ -24,12 +24,13 @@ const History = ({ history, stepNumber }) => {
   // console.log(history1);
   // console.log(history1[0]);
 
-  //こういう時、map必須っぽい
   let data = []
   history.map((b) =>
     data.push(
       // number: b.number.join("")
-      <li>{b.number}</li>
+      <li
+        key={b.id}
+      >{b.counts}</li>
     )
   )
 
@@ -44,7 +45,7 @@ const History = ({ history, stepNumber }) => {
       {/* <div>{array[num - 1]}</div> */}
       {/* <div>{number1}</div> */}
       {/* <Table
-        dataSource={data}
+        dataSource={history}
         columns={columns}
         title="History"
         pagination={false}

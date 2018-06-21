@@ -7,7 +7,6 @@ const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case "POST_GUESS":
       return {
-        ...state,
         history: action.history,
         stepNumber: action.stepNumber
       }
