@@ -16,7 +16,7 @@ while (bool) {
 const App = () => {
   return (
     <div>
-      <h1>{arr}</h1>
+      {/* <h1>{arr}</h1> */}
       <nav>
         <h1>navigation bar</h1>
       </nav>

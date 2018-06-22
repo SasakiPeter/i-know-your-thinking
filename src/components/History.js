@@ -11,9 +11,12 @@ class History extends React.Component {
 
   render() {
     const counts = this.props.current.counts
-    const response = calculate(counts, this.props.answer)
+    const answer = this.props.answer
+    const response = calculate(counts, answer)
     console.log(response)
-
+    if (response.eat === 3) {
+      message.success("Congrationration! " + "the answer is " + answer)
+    };
     const history = this.props.history.slice()
     history[history.length - 1].eat = response.eat;
     history[history.length - 1].bite = response.bite;
@@ -27,7 +30,7 @@ class History extends React.Component {
     } else {
       history.map((c) => {
         view.push(
-          <li>{c.counts}:{c.eat}{"-"}{c.bite}</li>
+          <li key={c.id}>{c.counts}:{c.eat}{"-"}{c.bite}</li>
         )
       })
       return (
