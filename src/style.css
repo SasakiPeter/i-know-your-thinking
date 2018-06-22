@@ -1,1 +1,1 @@
-@import url(~antd/dist/antd.css);.APP{display:flex}.APP section{width:70%;display:flex;flex-direction:column}.APP section>div{display:flex}.APP section button{width:100%}.APP aside{width:30%}.counter>div{line-height:100%;font-size:20em;text-align:center}
+@import url(~antd/dist/antd.css);.APP{display:flex}.APP aside{width:30%}.Post{width:70%;min-width:458.55px;display:flex;flex-direction:column}.Post>div{display:flex;width:100%}.Post button{width:100%}.counter{width:calc(100%/3)}.counter>div{line-height:100%;font-size:20em;text-align:center}

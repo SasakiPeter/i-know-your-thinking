@@ -1,5 +1,5 @@
 const initialState = {
-  history: [],
+  history: [{ counts: [null, null, null], id: -1 }],
   stepNumber: 0
 };
 

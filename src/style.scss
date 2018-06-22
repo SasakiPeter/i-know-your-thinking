@@ -3,23 +3,28 @@
 
 .APP{
     display: flex;
-    section{
-        width:70%;
-        display: flex;
-        flex-direction: column;
-        &>div{
-            display: flex;
-        }
-        button{
-            width:100%;
-        }
-    }
     aside{
         width:30%;
     }
 }
+
+.Post{
+    width:70%;
+    min-width:458.55px;
+    display: flex;
+    flex-direction: column;
+    >div{
+        display: flex;
+        width:100%;
+    }
+    button{
+        width:100%;
+    }
+}
+
 .counter{
-    &>div{
+    width:calc(100%/3);
+    >div{
         line-height: 100%;
         font-size: 20em;
         text-align: center;

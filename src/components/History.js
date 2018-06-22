@@ -1,57 +1,61 @@
 import React from 'react';
-import { Table } from 'antd';
-
-const columns = [{
-  title: "your_guess",
-  dataIndex: "counts",
-  key: "your_guess"
-}, {
-  title: "response",
-  dataIndex: "response",
-  key: "response"
-}];
-
-
-const History = ({ history, stepNumber }) => {
-  // const num = stepNumber
-  // const array = history
-  // const array1 = history[0].slice()
-  // const history1 = history.slice(0, stepNumber + 1)
-  // const current1 = history1[history1.length - 1];
-  // const number1 = current1.number.slice();
-  // const test = history1[0];
-
-  // console.log(history1);
-  // console.log(history1[0]);
-
-  let data = []
-  history.map((b) =>
-    data.push(
-      // number: b.number.join("")
-      <li
-        key={b.id}
-      >{b.counts}</li>
-    )
-  )
+import { message } from 'antd';
 
 
 
+class History extends React.Component {
+  state = {
+    eat: 0,
+    bite: 0
+  }
 
-  return (
-    <aside>
-      <h1>History</h1>
-      <ol>{data}</ol>
-      {/* <div>{array1}</div> */}
-      {/* <div>{array[num - 1]}</div> */}
-      {/* <div>{number1}</div> */}
-      {/* <Table
-        dataSource={history}
-        columns={columns}
-        title="History"
-        pagination={false}
-      /> */}
-    </aside>
-  )
+  render() {
+    const counts = this.props.current.counts
+    const response = calculate(counts, this.props.answer)
+    console.log(response)
+
+    const history = this.props.history.slice()
+    history[history.length - 1].eat = response.eat;
+    history[history.length - 1].bite = response.bite;
+    console.log(history);
+
+    const view = [];
+    if (this.props.current.id < 0) {
+      return (
+        <h1>No History</h1>
+      )
+    } else {
+      history.map((c) => {
+        view.push(
+          <li>{c.counts}:{c.eat}{"-"}{c.bite}</li>
+        )
+      })
+      return (
+        <div>
+          <h1>History</h1>
+          <ol>{view}</ol>
+        </div>
+      )
+    };
+  }
 };
 
 export default History;
+
+
+const calculate = (counts, answer) => {
+  let eat = 0;
+  let bite = 0;
+  for (let i = 0; i < 3; i++) {
+    const bool = answer.some(value => value === counts[i]);
+    if (bool) {
+      if (counts[i] === answer[i]) {
+        eat++
+      } else {
+        bite++
+      };
+    } else {
+    };
+  };
+  return { eat: eat, bite: bite }
+};

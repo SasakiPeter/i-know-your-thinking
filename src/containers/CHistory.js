@@ -3,8 +3,10 @@ import History from '../components/History';
 
 const mapStateToProps = (state) => {
   console.log(state.postReducer.history);
+  const history = state.postReducer.history
   return {
-    history: state.postReducer.history,
+    history: history,
+    current: history[history.length - 1],
     stepNumber: state.postReducer.stepNumber
   }
 };

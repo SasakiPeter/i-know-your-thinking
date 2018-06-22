@@ -35,15 +35,6 @@ class Post extends React.Component {
   };
 
   handleSubmit = () => {
-    // const { counts} = this.state;
-
-    // const history = this.state.history.slice(0, this.state.stepNumber + 1)
-    // const current = history[history.length - 1];
-    // const number = current.number.slice();
-    // console.log(history)
-    // console.log(current);
-    // console.log(number);
-
     const { history, counts, stepNumber } = this.state
     const [a, b, c] = counts;
     const same = []
@@ -53,10 +44,11 @@ class Post extends React.Component {
     const again = same.some(function (bool) {
       return bool === true;
     });
+
     if (a === b || a === c || b === c) {
       message.error("すべて異なる数字にしてください")
     } else if (again) {
-      message.error("同じ回答はできません")
+      message.error("同じ回答は投稿できません")
     } else {
       const newHistory = history.concat([
         {
@@ -74,16 +66,19 @@ class Post extends React.Component {
   };
 
   renderCounter = (i) => {
-    let style = {
-      width: 'calc(100 % /i);'
-    };
+    // let style = {
+    //   width: "calc(100 % /3)"
+    // };
     return (
       <Counter
         key={i}
         count={this.state.counts[i]}
         onIncrement={() => this.onIncrement(i)}
         onDecrement={() => this.onDecrement(i)}
-        style={style}
+      // style={{
+      //   width: calc(100 % /3);
+      // }}
+      // style={style}
       />
     );
   };
@@ -97,7 +92,7 @@ class Post extends React.Component {
       )
     };
     return (
-      <section>
+      <section className="Post">
         <h1>rule</h1>
         <p>あなたは{stepNumber}回挑戦しました。</p>
         <div>
