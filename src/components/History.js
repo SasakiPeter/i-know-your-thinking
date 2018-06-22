@@ -1,8 +1,6 @@
 import React from 'react';
 import { message } from 'antd';
 
-
-
 class History extends React.Component {
   state = {
     eat: 0,
@@ -15,7 +13,7 @@ class History extends React.Component {
     const response = calculate(counts, answer)
     console.log(response)
     if (response.eat === 3) {
-      message.success("Congrationration! " + "the answer is " + answer)
+      message.success("Congrationration! The answer is " + answer.join(""))
     };
     const history = this.props.history.slice()
     history[history.length - 1].eat = response.eat;

@@ -5,12 +5,14 @@ const Counter = ({ count, onIncrement, onDecrement }) => {
     return (
         <div className="counter">
             <Button
+                icon="caret-up"
                 onClick={onIncrement}
-            >+</Button>
+            ></Button>
             <div>{count}</div>
             <Button
+                icon="caret-down"
                 onClick={onDecrement}
-            >-</Button>
+            ></Button>
         </div>
     )
 }
