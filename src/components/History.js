@@ -1,5 +1,5 @@
 import React from 'react';
-import { message } from 'antd';
+import { message, Table } from 'antd';
 
 class History extends React.Component {
   state = {
@@ -20,22 +20,54 @@ class History extends React.Component {
     history[history.length - 1].bite = response.bite;
     console.log(history);
 
-    const view = [];
+    // const view = [];
+    const data = [];
     if (this.props.current.id < 0) {
       return (
-        <h1>No History</h1>
+        <aside>
+          <h2>ここにヒントがでるよ</h2>
+        </aside>
       )
     } else {
-      history.map((c) => {
-        view.push(
-          <li key={c.id}>{c.counts}:{c.eat}{"-"}{c.bite}</li>
-        )
+      // history.map((c) => {
+      //   view.push(
+      //     <li key={c.id}>{c.counts}:{c.eat}{"-"}{c.bite}</li>
+      //   )
+      // })
+      history.map((e) => {
+        data.push({
+          key: e.id,
+          counts: e.counts,
+          eat: e.eat,
+          bite: e.bite
+        })
       })
+
+      const columns = [{
+        title: '',
+        dataIndex: 'counts',
+        key: 'counts'
+      }, {
+        title: 'eat',
+        dataIndex: 'eat',
+        key: 'eat'
+      }, {
+        title: 'bite',
+        dataIndex: 'bite',
+        key: 'bite'
+      }];
+
       return (
-        <div>
-          <h1>History</h1>
-          <ol>{view}</ol>
-        </div>
+        <aside>
+          <h2>ひんと</h2>
+          <Table
+            // title={() => "History"}
+            dataSource={data}
+            columns={columns}
+            pagination={false}
+          />
+          {/* <ol>{view}</ol> */}
+        </aside>
       )
     };
   }

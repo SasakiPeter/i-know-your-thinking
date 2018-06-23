@@ -46,9 +46,9 @@ class Post extends React.Component {
     });
 
     if (a === b || a === c || b === c) {
-      message.error("すべて異なる数字にしてください")
+      message.error("すべて異なる数字にしてね")
     } else if (again) {
-      message.error("同じ回答は投稿できません")
+      message.error("同じ回答は投稿できないよ")
     } else {
       const newHistory = history.concat([
         {
@@ -93,15 +93,23 @@ class Post extends React.Component {
     };
     return (
       <section className="Post">
-        <h1>rule</h1>
-        <p>あなたは{stepNumber}回挑戦しました。</p>
+        <h1>ぬめろん</h1>
+        <section>
+          <h2>せつめい</h2>
+          <p>私の考えている3桁の数字を当ててみよう！</p>
+          <ul>
+            <li>ヒント1："<span>eat</span>"の数だけ数字が<span>一致</span>しているよ</li>
+            <li>ヒント2："<span>bite</span>"の数だけ数字が<span>含まれ</span>ているよ、でも一致はしてないよ</li>
+          </ul>
+        </section>
+        <p>あなたは<span>{stepNumber}</span>回挑戦しました。</p>
         <div>
           {counters}
         </div>
         <Button
           type="primary"
           onClick={this.handleSubmit}
-        >POST</Button>
+        >そーしん</Button>
       </section >
     )
   };
