@@ -11,17 +11,14 @@ class History extends React.Component {
     const counts = this.props.current.counts
     const answer = this.props.answer
     const response = calculate(counts, answer)
-    console.log(response)
     if (response.eat === 3) {
-      message.success("Congrationration! The answer is " + answer.join(""))
+      message.success("おめでとうございます! 答えは " + answer.join("") + " でした！！")
     };
-    const history = this.props.history.slice()
+
+    const data = [];
+    const history = this.props.history.slice();
     history[history.length - 1].eat = response.eat;
     history[history.length - 1].bite = response.bite;
-    console.log(history);
-
-    // const view = [];
-    const data = [];
     if (this.props.current.id < 0) {
       return (
         <aside>
@@ -29,11 +26,6 @@ class History extends React.Component {
         </aside>
       )
     } else {
-      // history.map((c) => {
-      //   view.push(
-      //     <li key={c.id}>{c.counts}:{c.eat}{"-"}{c.bite}</li>
-      //   )
-      // })
       history.map((e) => {
         data.push({
           key: e.id,
@@ -61,12 +53,10 @@ class History extends React.Component {
         <aside>
           <h2>ひんと</h2>
           <Table
-            // title={() => "History"}
             dataSource={data}
             columns={columns}
             pagination={false}
           />
-          {/* <ol>{view}</ol> */}
         </aside>
       )
     };

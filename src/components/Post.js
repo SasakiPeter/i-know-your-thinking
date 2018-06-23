@@ -15,7 +15,7 @@ class Post extends React.Component {
       return
     } else {
       const counts = this.state.counts.slice()
-      const arr = counts.splice(i, 1, counts[i] + 1)
+      const tmp = counts.splice(i, 1, counts[i] + 1)
       this.setState({
         counts: counts
       });
@@ -27,7 +27,7 @@ class Post extends React.Component {
       return
     } else {
       const counts = this.state.counts.slice()
-      const arr = counts.splice(i, 1, counts[i] - 1)
+      const tmp = counts.splice(i, 1, counts[i] - 1)
       this.setState({
         counts: counts
       });
@@ -94,6 +94,7 @@ class Post extends React.Component {
     return (
       <section className="Post">
         <h1>ぬめろん</h1>
+        <a href="https://github.com/SasakiPeter/i-know-your-thinking">Show GitHub Repository</a>
         <section>
           <h2>せつめい</h2>
           <p>私の考えている3桁の数字を当ててみよう！</p>

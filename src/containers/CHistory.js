@@ -10,12 +10,12 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
+// const mapDispatchToProps = (dispatch) => {
+//   return {
 
-  }
-};
+//   }
+// };
 
-const CHistory = connect(mapStateToProps, mapDispatchToProps)(History);
+const CHistory = connect(mapStateToProps, null)(History);
 
 export default CHistory;

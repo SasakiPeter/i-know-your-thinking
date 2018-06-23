@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import Post from '../components/Post';
 import { postGuess } from '../actions';
 
-const mapStateToProps = (state) => {
-  return {
+// const mapStateToProps = (state) => {
+//   return {
 
-  }
-};
+//   }
+// };
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -16,6 +16,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const CPost = connect(mapStateToProps, mapDispatchToProps)(Post);
+const CPost = connect(null, mapDispatchToProps)(Post);
 
 export default CPost;
