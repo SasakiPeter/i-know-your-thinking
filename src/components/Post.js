@@ -61,7 +61,6 @@ class Post extends React.Component {
         history: newHistory,
         stepNumber: newHistory.length,
       });
-      console.log(this.state);
     }
   };
 
