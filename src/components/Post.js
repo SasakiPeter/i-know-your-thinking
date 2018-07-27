@@ -12,7 +12,11 @@ class Post extends React.Component {
 
   onIncrement = (i) => {
     if (this.state.counts[i] === 9) {
-      return
+      const counts = this.state.counts.slice()
+      const tmp = counts.splice(i, 1, 0)
+      this.setState({
+        counts: counts
+      });
     } else {
       const counts = this.state.counts.slice()
       const tmp = counts.splice(i, 1, counts[i] + 1)
@@ -24,7 +28,11 @@ class Post extends React.Component {
 
   onDecrement = (i) => {
     if (this.state.counts[i] === 0) {
-      return
+      const counts = this.state.counts.slice()
+      const tmp = counts.splice(i, 1, 9)
+      this.setState({
+        counts: counts
+      });
     } else {
       const counts = this.state.counts.slice()
       const tmp = counts.splice(i, 1, counts[i] - 1)
