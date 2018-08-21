@@ -1,14 +1,20 @@
 const initialState = {
-  history: [{ counts: [null, null, null], id: -1 }],
-  stepNumber: 0
+  history: [{ counts: [null, null, null], id: -1, eat: -1, bite: -1 }],
+  stepNumber: 0,
+  completed: false
 };
 
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case "POST_GUESS":
       return {
-        history: action.history,
-        stepNumber: action.stepNumber
+        ...state,
+        ...action
+      }
+    case "COMPLETED":
+      return {
+        ...state,
+        completed: true
       }
     default:
       return state

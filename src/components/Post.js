@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, message } from 'antd';
 import Counter from './Counter';
+import { TwitterShareButton, TwitterIcon } from 'react-share';
 
 class Post extends React.Component {
   state = {
@@ -11,44 +12,39 @@ class Post extends React.Component {
   };
 
   onIncrement = (i) => {
+    const counts = this.state.counts.slice()
     if (this.state.counts[i] === 9) {
-      const counts = this.state.counts.slice()
       const tmp = counts.splice(i, 1, 0)
-      this.setState({
-        counts: counts
-      });
     } else {
-      const counts = this.state.counts.slice()
       const tmp = counts.splice(i, 1, counts[i] + 1)
-      this.setState({
-        counts: counts
-      });
-    }
+    };
+    this.setState({
+      counts: counts
+    });
   };
 
   onDecrement = (i) => {
+    const counts = this.state.counts.slice()
     if (this.state.counts[i] === 0) {
-      const counts = this.state.counts.slice()
       const tmp = counts.splice(i, 1, 9)
-      this.setState({
-        counts: counts
-      });
     } else {
-      const counts = this.state.counts.slice()
       const tmp = counts.splice(i, 1, counts[i] - 1)
-      this.setState({
-        counts: counts
-      });
-    }
+    };
+    this.setState({
+      counts: counts
+    });
   };
 
   handleSubmit = () => {
     const { history, counts, stepNumber } = this.state
     const [a, b, c] = counts;
     const same = []
+    // この記述なんだっけ？
+    // sameって奴はTrueとかflaseとか入ってるのかな
     for (let i = 0; i < history.length; i++) {
       same.push(history[i].counts === counts)
     }
+    // ここ、if in でもいいよね
     const again = same.some(function (bool) {
       return bool === true;
     });
@@ -58,18 +54,27 @@ class Post extends React.Component {
     } else if (again) {
       message.error("同じ回答は投稿できないよ")
     } else {
+      const answer = this.props.answer;
+      const response = calculate(counts, answer);
+      if (response.eat === 3) {
+        message.success("おめでとうございます! 答えは " + answer.join("") + " でした！！")
+        // これ、stateで管理したほうがいいんじゃ？
+        this.props.onCompleted();
+      };
       const newHistory = history.concat([
         {
           counts: counts,
-          id: stepNumber
-        }
+          id: stepNumber,
+          eat: response.eat,
+          bite: response.bite
+        },
       ]);
       this.props.onPostGuess(newHistory, newHistory.length);
       this.setState({
         history: newHistory,
         stepNumber: newHistory.length,
-      });
-    }
+      })
+    };
   };
 
   renderCounter = (i) => {
@@ -82,6 +87,7 @@ class Post extends React.Component {
         count={this.state.counts[i]}
         onIncrement={() => this.onIncrement(i)}
         onDecrement={() => this.onDecrement(i)}
+      // ここstyled component使いたい
       // style={{
       //   width: calc(100 % /3);
       // }}
@@ -93,6 +99,8 @@ class Post extends React.Component {
   render() {
     const { stepNumber, level } = this.state;
     const counters = [];
+    const completed = this.props.completed;
+
     for (let i = 0; i < level; i++) {
       counters.push(
         this.renderCounter(i)
@@ -111,6 +119,20 @@ class Post extends React.Component {
           </ul>
         </section>
         <p>あなたは<span>{stepNumber}</span>回挑戦しました。</p>
+        <TwitterShareButton
+          url={window.location.href}
+          title={true === completed ?
+            "ぬめろんやろう! 私は" + stepNumber + "回挑戦してクリアしました。" :
+            "ぬめろんやろう!"
+          }
+          hashtags={["ぬめろん"]}
+        >
+          <TwitterIcon
+            size={32}
+            round={true}
+          />
+        </TwitterShareButton>
+
         <div>
           {counters}
         </div>
@@ -118,9 +140,25 @@ class Post extends React.Component {
           type="primary"
           onClick={this.handleSubmit}
         >そーしん</Button>
-      </section >
+      </section>
     )
   };
 };
 
 export default Post;
+
+const calculate = (counts, answer) => {
+  let eat = 0;
+  let bite = 0;
+  for (let i = 0; i < 3; i++) {
+    const bool = answer.some(value => value === counts[i]);
+    if (bool) {
+      if (counts[i] === answer[i]) {
+        eat++
+      } else {
+        bite++
+      };
+    };
+  };
+  return { eat: eat, bite: bite }
+};

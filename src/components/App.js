@@ -15,13 +15,13 @@ while (bool) {
     bool = false
   }
 };
-// console.log(arr)
+console.log(arr)
 
 const App = () => {
   return (
     <div className="APP">
-      <CPost />
-      <CHistory answer={arr} />
+      <CPost answer={arr} />
+      <CHistory />
     </div>
   )
 };
