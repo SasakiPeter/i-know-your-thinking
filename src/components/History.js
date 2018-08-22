@@ -8,7 +8,8 @@ class History extends React.Component {
     if (this.props.current.id < 0) {
       return (
         <aside>
-          <h2>ここにヒントがでるよ</h2>
+          <p>まだ履歴はありません。</p>
+          <p>適当に数字を入力してプレイしてみましょう。</p>
         </aside>
       )
     } else {
@@ -36,14 +37,16 @@ class History extends React.Component {
       }];
 
       return (
-        <aside>
-          <h2>ひんと</h2>
-          <Table
-            dataSource={data}
-            columns={columns}
-            pagination={false}
-          />
-        </aside>
+        <div>
+          <aside>
+            <Table
+              dataSource={data}
+              columns={columns}
+              pagination={false}
+            />
+          </aside>
+        </div>
+
       )
     };
   }

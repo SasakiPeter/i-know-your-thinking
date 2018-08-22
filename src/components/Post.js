@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, message } from 'antd';
+import { Button, message, Icon } from 'antd';
 import Counter from './Counter';
 import { TwitterShareButton, TwitterIcon } from 'react-share';
 
@@ -109,37 +109,31 @@ class Post extends React.Component {
     return (
       <section className="Post">
         <h1>ぬめろん</h1>
-        <a href="https://github.com/SasakiPeter/i-know-your-thinking">Show GitHub Repository</a>
-        <section>
-          <h2>せつめい</h2>
-          <p>私の考えている3桁の数字を当ててみよう！</p>
-          <ul>
-            <li>ヒント1："<span>eat</span>"の数だけ数字が<span>一致</span>しているよ</li>
-            <li>ヒント2："<span>bite</span>"の数だけ数字が<span>含まれ</span>ているよ、でも一致はしてないよ</li>
-          </ul>
-        </section>
-        <p>あなたは<span>{stepNumber}</span>回挑戦しました。</p>
-        <TwitterShareButton
-          url={window.location.href}
-          title={true === completed ?
-            "ぬめろんやろう! 私は" + stepNumber + "回挑戦してクリアしました。" :
-            "ぬめろんやろう!"
-          }
-          hashtags={["ぬめろん"]}
-        >
-          <TwitterIcon
-            size={32}
-            round={true}
-          />
-        </TwitterShareButton>
-
-        <div>
-          {counters}
+        <div className="info">
+          <TwitterShareButton
+            url={window.location.href}
+            title={true === completed ?
+              "ぬめろんやろう! 私は" + stepNumber + "回挑戦してクリアしました。" :
+              "ぬめろんやろう!"
+            }
+            hashtags={["ぬめろん"]}
+          >
+            <TwitterIcon
+              size={32}
+              round={true}
+            />
+          </TwitterShareButton>
+          <p>あなたは<span>{stepNumber}</span>回挑戦しました！</p>
         </div>
-        <Button
-          type="primary"
-          onClick={this.handleSubmit}
-        >そーしん</Button>
+        <div className="controller">
+          <div>
+            {counters}
+          </div>
+          <Button
+            type="primary"
+            onClick={this.handleSubmit}
+          ><Icon type="rocket" style={{ fontSize: 25 }} /></Button>
+        </div>
       </section>
     )
   };

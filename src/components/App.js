@@ -1,6 +1,6 @@
 import React from 'react';
 import CPost from '../containers/CPost';
-import CHistory from '../containers/CHistory';
+import Navbar from './Navbar';
 
 const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 for (let i = arr.length - 1; i >= 0; i--) {
@@ -20,8 +20,8 @@ console.log(arr)
 const App = () => {
   return (
     <div className="APP">
+      <Navbar />
       <CPost answer={arr} />
-      <CHistory />
     </div>
   )
 };

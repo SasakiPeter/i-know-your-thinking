@@ -1,39 +1,51 @@
 @import '~antd/dist/antd.css';
 
 .APP{
-    display: flex;
     width:80vmin;
     margin:auto;
-    aside{
-        width:40%;
-    }
+    // aside{
+    //     width:40%;
+    // }
 }
 
 .Post{
-    width:60%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     h1{
         font-weight: bold;
     }
-    section{
-        ul{
-            padding:0 0 0 20px;
+    // section{
+    //     ul{
+    //         padding:0 0 0 20px;
+    //         span{
+    //             color:red;
+    //         }
+    //     }
+    // }
+
+    .info{
+        display: flex;
+        justify-content: center;
+        width:100%;
+        >p{
+            margin: 0;
             span{
-                color:red;
+                font-weight: bold;
+                font-size:2em;
             }
         }
     }
-    >p{
-        span{
-            font-weight: bold;
-            font-size:2em;
+
+    .controller{
+        width:80%;
+        display: flex;
+        flex-direction: column;
+        >div{
+            display: flex;
         }
     }
-    >div{
-        display: flex;
-        width:100%;
-    }
+
     button{
         width:100%;
     }
@@ -41,6 +53,10 @@
 
 .counter{
     width:calc(100%/3);
+    button{
+        display: flex;
+        justify-content: center;
+    }
     >div{
         line-height: 100%;
         font-size: 30vmin;
