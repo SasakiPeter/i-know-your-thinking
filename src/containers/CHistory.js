@@ -6,7 +6,7 @@ const mapStateToProps = (state) => {
   return {
     history: history,
     current: history[history.length - 1],
-    stepNumber: state.postReducer.stepNumber
+    // stepNumber: state.postReducer.stepNumber
   }
 };
 
