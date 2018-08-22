@@ -15,7 +15,7 @@ while (bool) {
     bool = false
   }
 };
-console.log(arr)
+// console.log(arr)
 
 const App = () => {
   return (

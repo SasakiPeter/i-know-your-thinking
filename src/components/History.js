@@ -1,6 +1,5 @@
 import React from 'react';
 import { Table } from 'antd';
-
 class History extends React.Component {
   render() {
     const data = [];
