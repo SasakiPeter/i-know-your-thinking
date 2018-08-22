@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, message, Icon } from 'antd';
+import { Button, message, Icon, notification } from 'antd';
 import Counter from './Counter';
 import { TwitterShareButton, TwitterIcon } from 'react-share';
 
@@ -36,14 +36,17 @@ class Post extends React.Component {
   };
 
   handleSubmit = () => {
+    if (this.props.completed === true) {
+      return
+    };
+
     const { history, counts, stepNumber } = this.state
     const [a, b, c] = counts;
     const same = []
-    // この記述なんだっけ？
-    // sameって奴はTrueとかflaseとか入ってるのかな
     for (let i = 0; i < history.length; i++) {
       same.push(history[i].counts === counts)
     }
+
     // ここ、if in でもいいよね
     const again = same.some(function (bool) {
       return bool === true;
@@ -56,11 +59,22 @@ class Post extends React.Component {
     } else {
       const answer = this.props.answer;
       const response = calculate(counts, answer);
+
       if (response.eat === 3) {
-        message.success("おめでとうございます! 答えは " + answer.join("") + " でした！！")
+        notification['success']({
+          message: '正解！',
+          description: 'おめでとうございます! 答えは ' + answer.join('') + ' でした！！',
+        });
         // これ、stateで管理したほうがいいんじゃ？
         this.props.onCompleted();
+      } else {
+        notification['info']({
+          message: 'ヒント',
+          description: 'eat : ' + response.eat + '  bite : ' + response.bite,
+        });
       };
+
+
       const newHistory = history.concat([
         {
           counts: counts,
@@ -108,15 +122,15 @@ class Post extends React.Component {
     };
     return (
       <section className="Post">
-        <h1>ぬめろん</h1>
+        <h1>ぬめろんアプリ</h1>
         <div className="info">
           <TwitterShareButton
             url={window.location.href}
             title={true === completed ?
-              "ぬめろんやろう! 私は" + stepNumber + "回挑戦してクリアしました。" :
+              "ぬめろんやろう! 私は" + stepNumber + "回挑戦してクリアしたよ♪" :
               "ぬめろんやろう!"
             }
-            hashtags={["ぬめろん"]}
+            hashtags={["ぬめろんアプリ"]}
           >
             <TwitterIcon
               size={32}

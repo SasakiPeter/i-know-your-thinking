@@ -1,10 +1,6 @@
 import React from 'react';
 import { Menu, Icon, Modal, Drawer } from 'antd';
 import CHistory from '../containers/CHistory';
-
-// const SubMenu = Menu.SubMenu;
-// const MenuItemGroup = Menu.ItemGroup;
-
 class Navbar extends React.Component {
     state = {
         current: 'history',
@@ -44,6 +40,15 @@ class Navbar extends React.Component {
             content: (
                 <div>
                     <p>このアプリは３桁の数字を当てるゲームです。</p>
+                    <p>３桁の数字は全720通りからランダムに抽出されます。</p>
+                    <p>任意の数字を入力してロケットのボタンを押すと、ヒントが得られます。</p>
+                    <p>ヒントには"eat"と"bite"の情報が与えられます。</p>
+                    <ul>
+                        <li>eat:  位も数字も一致しているものの数</li>
+                        <li>bite: 位は合っていないが、数字は含まれているものの数</li>
+                    </ul>
+                    <p>試しに好きな数字を入力してプレイしてみましょう！</p>
+
                     <a href="https://github.com/SasakiPeter/i-know-your-thinking">Show GitHub</a>
                 </div>
             ),
