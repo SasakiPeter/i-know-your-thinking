@@ -6,11 +6,13 @@ const Counter = ({ count, onIncrement, onDecrement }) => {
         <div className="counter">
             <Button
                 icon="caret-up"
+                style={{ fontSize: 25 }}
                 onClick={onIncrement}
             ></Button>
             <div>{count}</div>
             <Button
                 icon="caret-down"
+                style={{ fontSize: 25 }}
                 onClick={onDecrement}
             ></Button>
         </div>
