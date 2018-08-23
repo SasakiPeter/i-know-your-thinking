@@ -7,14 +7,8 @@ for (let i = arr.length - 1; i >= 0; i--) {
   let rand = Math.floor(Math.random() * (i + 1));
   [arr[i], arr[rand]] = [arr[rand], arr[i]]
 };
-let bool = true;
-while (bool) {
-  let rand = arr[Math.floor(Math.random() * arr.length)];
-  let temp = arr.splice(rand, 1);
-  if (arr.length === 3) {
-    bool = false
-  }
-};
+
+const tmp = arr.splice(3);
 
 if (process.env.NODE_ENV === 'development') {
   console.log(arr)
