@@ -3,9 +3,6 @@
 .APP{
     width:80vmin;
     margin:auto;
-    // aside{
-    //     width:40%;
-    // }
 }
 
 .Post{
@@ -15,14 +12,6 @@
     h1{
         font-weight: bold;
     }
-    // section{
-    //     ul{
-    //         padding:0 0 0 20px;
-    //         span{
-    //             color:red;
-    //         }
-    //     }
-    // }
 
     .info{
         display: flex;
@@ -62,4 +51,8 @@
         font-size: 30vmin;
         text-align: center;
     }
+}
+
+aside>p{
+    margin-top:1em;
 }

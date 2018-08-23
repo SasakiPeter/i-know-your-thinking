@@ -15,7 +15,10 @@ while (bool) {
     bool = false
   }
 };
-// console.log(arr)
+
+if (process.env.NODE_ENV === 'development') {
+  console.log(arr)
+};
 
 const App = () => {
   return (

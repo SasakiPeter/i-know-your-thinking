@@ -20,3 +20,7 @@ const Counter = ({ count, onIncrement, onDecrement }) => {
 }
 
 export default Counter;
+
+
+
+
