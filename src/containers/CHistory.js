@@ -6,15 +6,12 @@ const mapStateToProps = (state) => {
   return {
     history: history,
     current: history[history.length - 1],
-    // stepNumber: state.postReducer.stepNumber
+    completed: state.postReducer.completed
   }
 };
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
-//     onCompleted: () => {
-//       dispatch(completed())
-//     }
 //   }
 // };
 

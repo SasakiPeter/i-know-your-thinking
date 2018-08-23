@@ -15,13 +15,8 @@ const columns = [{
   key: 'bite'
 }];
 
-const History = ({ history, current }) => {
+const History = ({ history, current, completed }) => {
   const data = [];
-  console.log(history);
-  console.log(columns);
-  console.log(current.id);
-
-
   if (current.id < 0) {
     return (
       <aside>
@@ -37,16 +32,32 @@ const History = ({ history, current }) => {
         eat: e.eat,
         bite: e.bite
       })
-    })
-    return (
-      <aside>
-        <Table
-          dataSource={data}
-          columns={columns}
-          pagination={false}
-        />
-      </aside>
-    )
+    });
+    if (completed === true) {
+      return (
+        <aside>
+          <Table
+            dataSource={data}
+            columns={columns}
+            pagination={false}
+          />
+          <p>お見事！正解です！！</p>
+          <p>これ以上の投稿はできません。続けて遊ぶ方は
+          <a href={window.location.href}>ここ</a>
+            をクリックしてください。</p>
+        </aside>
+      )
+    } else {
+      return (
+        <aside>
+          <Table
+            dataSource={data}
+            columns={columns}
+            pagination={false}
+          />
+        </aside>
+      )
+    };
   };
 }
 

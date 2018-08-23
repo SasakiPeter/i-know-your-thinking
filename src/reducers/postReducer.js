@@ -1,6 +1,5 @@
 const initialState = {
   history: [{ counts: [null, null, null], id: -1, eat: -1, bite: -1 }],
-  stepNumber: 0,
   completed: false
 };
 
@@ -14,8 +13,11 @@ const postReducer = (state = initialState, action) => {
     case "COMPLETED":
       return {
         ...state,
-        completed: true
+        ...action
       }
+    // 上の記述と等価？
+    // case "COMPLETED":
+    //   return Object.assign({}, state, action)
     default:
       return state
   }

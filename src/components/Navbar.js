@@ -9,7 +9,7 @@ class Navbar extends React.Component {
     };
 
     handleClick = (e) => {
-        console.log('click ', e);
+        // console.log('click ', e);
         this.setState({
             current: e.key,
         });
@@ -63,14 +63,14 @@ class Navbar extends React.Component {
     }
 
     handleOk = (e) => {
-        console.log(e);
+        // console.log(e);
         this.setState({
             visibleSetting: false,
         });
     }
 
     handleCancel = (e) => {
-        console.log(e);
+        // console.log(e);
         this.setState({
             visibleSetting: false,
         });

@@ -6,8 +6,8 @@ import { TwitterShareButton, TwitterIcon } from 'react-share';
 class Post extends React.Component {
   state = {
     counts: Array(3).fill(0),
-    history: [],
     stepNumber: 0,
+    history: [],
     level: 3
   };
 
@@ -53,9 +53,9 @@ class Post extends React.Component {
     });
 
     if (a === b || a === c || b === c) {
-      message.error("すべて異なる数字にしてね")
+      message.error("すべて異なる数字にしてください")
     } else if (again) {
-      message.error("同じ回答は投稿できないよ")
+      message.error("同じ回答は投稿できません")
     } else {
       const answer = this.props.answer;
       const response = calculate(counts, answer);
@@ -74,7 +74,6 @@ class Post extends React.Component {
         });
       };
 
-
       const newHistory = history.concat([
         {
           counts: counts,
@@ -83,7 +82,7 @@ class Post extends React.Component {
           bite: response.bite
         },
       ]);
-      this.props.onPostGuess(newHistory, newHistory.length);
+      this.props.onPostGuess(newHistory);
       this.setState({
         history: newHistory,
         stepNumber: newHistory.length,

@@ -1,25 +1,13 @@
-export const postGuess = (history, stepNumber) => {
+export const postGuess = (history) => {
   return {
     type: "POST_GUESS",
-    history: history,
-    stepNumber: stepNumber
-  }
-};
-
-export const increment = () => {
-  return {
-    type: "INCREMENT"
-  }
-};
-
-export const decrement = () => {
-  return {
-    type: "DECREMENT"
+    history: history
   }
 };
 
 export const completed = () => {
   return {
-    type: "COMPLETED"
+    type: "COMPLETED",
+    completed: true
   }
 }

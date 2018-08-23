@@ -10,8 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onPostGuess: (history, stepNumber) => {
-      dispatch(postGuess(history, stepNumber))
+    onPostGuess: (history) => {
+      dispatch(postGuess(history))
     },
     onCompleted: () => {
       dispatch(completed())
